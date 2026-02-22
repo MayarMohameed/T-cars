@@ -11,7 +11,7 @@ const MODELS = {
   Tesla: ["Model 3", "Model S", "Model X", "Model Y"],
   Ferrari: ["488", "F8", "Roma", "SF90"],
 };
-const CITIES = ["New York", "Los Angeles", "Chicago", "Houston", "Miami", "San Francisco", "Seattle", "Boston"];
+const CITIES = ["Cairo", "Riyadh", "Dubai", "Casablanca", "Alexandria", "Jeddah", "Abu Dhabi", "Doha"];
 const YEARS = Array.from({ length: 30 }, (_, i) => (2024 - i).toString());
 const COLORS = ["Black", "White", "Silver", "Blue", "Red", "Grey", "Green", "Yellow", "Orange", "Brown"];
 const FUEL_TYPES = ["Petrol", "Diesel", "Electric", "Hybrid", "Plug-in Hybrid"];
@@ -83,12 +83,12 @@ export default function TCarsListing() {
   // ── Shared class helpers ───────────────────────────────────────
   const inputCls = (field) =>
     `w-full border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
-      errors[field] ? "border-red-400 bg-red-50" : "border-gray-200 bg-white"
+      errors[field] ? "border-red-400 bg-red-50" : "border-blue-500 bg-white"
     }`;
 
   const selectCls = (field) =>
     `w-full border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition appearance-none bg-white ${
-      errors[field] ? "border-red-400 bg-red-50" : "border-gray-200"
+      errors[field] ? "border-red-400 bg-red-50" : "border-blue-500"
     }`;
 
   // ── Photo Slot ─────────────────────────────────────────────────
@@ -105,7 +105,7 @@ export default function TCarsListing() {
             ? "2px solid #93c5fd"
             : slotError
             ? "2px dashed #fca5a5"
-            : "2px dashed #e5e7eb",
+            : "2px dashed #3b82f6",
           minHeight: isMain ? 180 : 90,
           background: slotError ? "#fff5f5" : undefined,
         }}
@@ -268,41 +268,41 @@ export default function TCarsListing() {
 
   // ══════════════════════════════════════════════════════════════
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
+    <div className="w-full min-h-screen bg-blue-100 font-sans">
 
       {/* ── Navbar ── */}
-      <nav className="bg-white border-b border-gray-100 px-2 py-4 flex items-center justify-between sticky top-0 z-50">
-        <div className="flex items-center gap-2">
+      <nav className="w-screen bg-blue-600 border-b border-gray-100 px-2 py-4 flex items-center justify-between sticky top-0 z-50 rounded-b-lg" style={{ marginLeft: "calc(-50vw + 50%)" }}>
+        <div className="flex items-center gap-2 ml-4">
           <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
               <path d="M5 17H3a2 2 0 01-2-2V9a2 2 0 012-2h2l3-4h8l3 4h2a2 2 0 012 2v6a2 2 0 01-2 2h-2"/>
               <circle cx="7.5" cy="17" r="2.5"/><circle cx="16.5" cy="17" r="2.5"/>
             </svg>
           </div>
-          <span className="font-bold text-gray-900 text-lg tracking-tight">T-CARS</span>
+          <span className="font-bold text-white text-lg tracking-tight">T-CARS</span>
         </div>
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white">
           {step === 1
             ? ["Dashboard", "Listings", "Messages", "Settings"].map(n => (
-                <button key={n} className={`hover:text-gray-900 transition ${n === "Listings" ? "text-blue-600 font-semibold" : ""}`}>{n}</button>
+                <button key={n} className={`hover:text-gray-100 transition ${n === "Listings" ? "text-yellow-300 font-semibold" : ""}`}>{n}</button>
               ))
             : ["Cars for Sale", "Sell Your Car", "Reviews", "News"].map(n => (
-                <button key={n} className="hover:text-gray-900 transition">{n}</button>
+                <button key={n} className="hover:text-gray-100 transition">{n}</button>
               ))}
         </div>
-        <div className="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold cursor-pointer">M</div>
+        <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center text-blue-600 text-sm font-bold cursor-pointer ml-4 mr-4">M</div>
       </nav>
 
-      <div className="mx-auto px-3 py-8">
+      <div className="w-full px-3 py-8">
 
         {/* Header + Progress */}
         <div className="flex items-start justify-between mb-8">
           <div>
             <h1 className="text-3xl font-black">
-              {step === 1 ? <span className="text-blue-600">Add Car Listing</span> : <span className="text-blue-600">Review & Additional Details</span>}
+              {step === 1 ? <span className="text-blue-600">Start Selling Your Car</span> : <span className="text-blue-600">Review & Additional Details</span>}
             </h1>
-            <p className="text-gray-500 mt-1 text-sm">
-              {step === 1 ? "Step 1: Basic Information & Photos" : "Step 2 of 2: Finalize your technical specs and publish"}
+            <p className="text-gray-500 mt-1 text-sm -ml-30">
+              {step === 1 ? "Basic Information & Photos" : ""}
             </p>
           </div>
           <div className="text-right min-w-[140px]">
@@ -321,7 +321,7 @@ export default function TCarsListing() {
           <div className="space-y-6">
 
             {/* Vehicle Info */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 opacity-100">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-9 h-9 bg-blue-100 rounded-full flex items-center justify-center">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.5">
@@ -390,11 +390,14 @@ export default function TCarsListing() {
                 <div>
                   <label className="block text-left text-sm font-medium text-gray-700 mb-1.5">City</label>
                   <div className="relative">
-                    <select value={form.city} onChange={e => set("city", e.target.value)} className={selectCls("city")}>
-                      <option value="">Select City</option>
-                      {CITIES.map(c => <option key={c} value={c}>{c}</option>)}
-                    </select>
-                    <svg className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6"/></svg>
+                    <input
+                      list="cities"
+                      value={form.city}
+                      onChange={e => set("city", e.target.value)}
+                      placeholder="Cairo"
+                      className={inputCls("city") + " pr-10"}
+                    />
+                    <datalist id="cities">{CITIES.map(c => <option key={c} value={c} />)}</datalist>
                   </div>
                   {errors.city && <p className="text-red-500 text-xs mt-1">{errors.city}</p>}
                 </div>
@@ -402,7 +405,7 @@ export default function TCarsListing() {
                 {/* Condition */}
                 <div>
                   <label className="block text-left text-sm font-medium text-gray-700 mb-1.5">Condition</label>
-                  <div className="flex rounded-lg border border-gray-200 overflow-hidden w-fit">
+                  <div className="flex rounded-lg border border-blue-500 overflow-hidden w-fit">
                     {["New", "Used"].map(c => (
                       <button key={c} onClick={() => set("condition", c)}
                         className={`px-6 py-2.5 text-sm font-medium transition ${form.condition === c ? "bg-blue-600 text-white" : "bg-white text-gray-600 hover:bg-gray-50"}`}>
@@ -431,13 +434,13 @@ export default function TCarsListing() {
                   onChange={e => set("description", e.target.value)}
                   rows={4}
                   placeholder="Tell potential buyers about the features, history, and any upgrades..."
-                  className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none"
+                  className="w-full border border-blue-500 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none"
                 />
               </div>
             </div>
 
             {/* ── Photos (max 5) ── */}
-            <div className={`bg-white rounded-2xl p-6 shadow-sm border transition-colors ${photoError ? "border-red-300" : "border-gray-100"}`}>
+            <div className={`bg-white rounded-2xl p-6 shadow-sm border transition-colors opacity-100 ${photoError ? "border-red-300" : "border-blue-500"}`}>
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">
                   <div className={`w-9 h-9 rounded-full flex items-center justify-center ${photoError ? "bg-red-100" : "bg-orange-100"}`}>
@@ -501,36 +504,28 @@ export default function TCarsListing() {
               </div>
             </div>
 
-            {/* ── Terms & Conditions checkbox (REQUIRED) ── */}
-            <div className={`flex items-start gap-3 px-1 py-3 rounded-xl transition ${!agreed && errors.agreed ? "bg-red-50 border border-red-200 px-4" : ""}`}>
-              <input
-                type="checkbox"
-                id="terms"
-                checked={agreed}
-                onChange={e => setAgreed(e.target.checked)}
-                className="w-4 h-4 mt-0.5 rounded border-gray-300 text-blue-600 cursor-pointer"
-              />
-              <label htmlFor="terms" className="text-sm text-gray-600 cursor-pointer">
-                I agree to the{" "}
-                <span className="text-blue-600 font-medium">Terms & Conditions</span>{" "}
-                and{" "}
-                <span className="text-blue-600 font-medium">Privacy Policy</span>.
-                <br />
-                <span className="text-xs text-gray-400">Your listing will be reviewed by our moderation team before going live.</span>
-              </label>
-            </div>
-            {/* Show hint if tried to continue without checking */}
-            {!agreed && Object.keys(errors).length > 0 && (
-              <p className="text-red-500 text-xs -mt-4 px-1">You must agree to the Terms & Conditions to continue.</p>
-            )}
-
-            <div className="flex items-center justify-between">
-              <button className="text-sm font-medium text-gray-600 hover:text-gray-900 transition px-4 py-3">
-                Save as Draft
-              </button>
+            {/* ── Terms & Conditions checkbox (REQUIRED) + Continue Button ── */}
+            <div className="flex items-start gap-3 justify-between">
+              <div className={`flex items-start gap-3 flex-1 px-1 py-3 rounded-xl transition ${!agreed && errors.agreed ? "bg-red-50 border border-red-200 px-4" : ""}`}>
+                <input
+                  type="checkbox"
+                  id="terms"
+                  checked={agreed}
+                  onChange={e => setAgreed(e.target.checked)}
+                  className="w-4 h-4 mt-0.5 rounded border-gray-300 text-blue-600 cursor-pointer"
+                />
+                <label htmlFor="terms" className="text-sm text-gray-600 cursor-pointer">
+                  I agree to the{" "}
+                  <span className="text-blue-600 font-medium">Terms & Conditions</span>{" "}
+                  and{" "}
+                  <span className="text-blue-600 font-medium">Privacy Policy</span>.
+                  <br />
+                  <span className="text-xs text-gray-400">Your listing will be reviewed by our moderation team before going live.</span>
+                </label>
+              </div>
               <button
                 onClick={handleContinue}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3.5 rounded-xl transition flex items-center gap-2 shadow-lg shadow-blue-200"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3.5 rounded-xl transition flex items-center gap-2 shadow-lg shadow-blue-200 whitespace-nowrap ml-4 h-fit"
               >
                 Continue to Step 2
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -538,6 +533,10 @@ export default function TCarsListing() {
                 </svg>
               </button>
             </div>
+            {/* Show hint if tried to continue without checking */}
+            {!agreed && Object.keys(errors).length > 0 && (
+              <p className="text-red-500 text-xs px-1">You must agree to the Terms & Conditions to continue.</p>
+            )}
           </div>
 
         ) : (
@@ -552,14 +551,14 @@ export default function TCarsListing() {
               </div>
 
               {/* Vehicle Specifications */}
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 opacity-100">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-9 h-9 bg-blue-100 rounded-full flex items-center justify-center">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.5">
                       <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/>
                     </svg>
                   </div>
-                  <h2 className="text-lg font-bold text-gray-900">Vehicle Specifications</h2>
+                  <h2 className="text-lg font-bold text-blue-600">Vehicle Specifications</h2>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
@@ -637,7 +636,7 @@ export default function TCarsListing() {
                       >
                         <span className={`absolute top-1 w-4 h-4 bg-white rounded-full shadow transition-transform ${form.insurance ? "translate-x-7" : "translate-x-1"}`} />
                       </button>
-                      <span className={`text-sm font-medium ${form.insurance ? "text-blue-600" : "text-gray-500"}`}>Yes</span>
+                      <span className={`text-sm font-medium ml-3 ${form.insurance ? "text-blue-600" : "text-gray-500"}`}>Yes</span>
                     </div>
                   </div>
 
@@ -657,7 +656,7 @@ export default function TCarsListing() {
               </div>
 
               {/* ── Declaration checkbox (REQUIRED for Publish) ── */}
-              <div className={`rounded-2xl p-5 border flex items-start gap-3 transition-colors ${
+              <div className={`rounded-2xl p-5 border flex items-start gap-3 transition-colors opacity-100 ${
                 agreed2
                   ? "bg-blue-50 border-blue-200"
                   : "bg-gray-50 border-gray-200"
@@ -696,7 +695,9 @@ export default function TCarsListing() {
                   </button>
                   <button
                     onClick={() => setStep(1)}
-                    className="flex-1 border-2 border-gray-200 text-gray-700 font-semibold py-4 rounded-xl hover:border-gray-300 hover:bg-gray-50 transition"
+                    className="flex-1 bg-white border-2 border-white text-blue-600 font-semibold py-4 rounded-xl transition"
+                    onMouseEnter={(e) => e.target.style.backgroundColor = '#C3DDFD'}
+                    onMouseLeave={(e) => e.target.style.backgroundColor = '#ffffff'}
                   >
                     Back to Step 1
                   </button>
@@ -746,7 +747,7 @@ export default function TCarsListing() {
         </div>
       )}
 
-      <footer className="text-center text-xs text-gray-400 py-8 mt-4">
+      <footer className="w-screen text-center text-xs text-white py-8 mt-4 bg-blue-600 rounded-t-lg" style={{ marginLeft: "calc(-50vw + 50%)" }}>
         © 2024 T-Cars {step === 2 ? "Global Automotive" : ""} Marketplace. All rights reserved.
       </footer>
     </div>
